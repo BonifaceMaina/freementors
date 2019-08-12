@@ -21,3 +21,13 @@ const validateRegister = () => {
         return false;
     }
 }
+
+// add booking functionality to user buttons
+const bookButtons = document.querySelectorAll(".individualDisplay .unbooked");
+for(let i=0; i<bookButtons.length; i++){
+    bookButtons[i].addEventListener('click', function(){
+        bookButtons[i].classList.remove("unbooked");
+        bookButtons[i].classList.add("booked");
+        bookButtons[i].innerHTML = "Session Booked";
+    });
+}
