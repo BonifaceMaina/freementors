@@ -53,3 +53,12 @@ for(let i=0; i<mentorReject.length; i++){
         
     });
 }
+
+const makeMentor = document.querySelectorAll(".adminDisplay .unbooked");
+for(let i=0; i<makeMentor.length; i++){
+    makeMentor[i].addEventListener('click', function(){
+        makeMentor[i].classList.add("booked");
+        makeMentor[i].classList.remove("unbooked");
+        makeMentor[i].innerHTML = "Mentor";        
+    });
+}
