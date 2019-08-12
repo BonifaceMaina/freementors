@@ -32,7 +32,7 @@ for(let i=0; i<bookButtons.length; i++){
     });
 }
 
-// add accept/reject functionality to mentor buttons
+// add accept functionality to mentor buttons
 const mentorAccept = document.querySelectorAll(".mentorDisplay .accept");
 const mentorReject  = document.querySelectorAll(".reject");
 for(let i=0; i<mentorAccept.length; i++){
@@ -42,5 +42,14 @@ for(let i=0; i<mentorAccept.length; i++){
         mentorReject[i].style.display = "none";
         mentorAccept[i].classList.add("accepted");
         mentorAccept[i].innerHTML = "Session Booked";
+    });
+}
+
+// add reject functionality to mentor buttons
+const holdingDiv = document.querySelectorAll(".mentorDisplay");
+for(let i=0; i<mentorReject.length; i++){
+    mentorReject[i].addEventListener('click', function(){
+        holdingDiv[i].style.display = "none";
+        
     });
 }
