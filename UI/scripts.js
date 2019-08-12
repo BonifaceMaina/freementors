@@ -23,11 +23,24 @@ const validateRegister = () => {
 }
 
 // add booking functionality to user buttons
-const bookButtons = document.querySelectorAll(".individualDisplay .unbooked");
+const bookButtons = document.querySelectorAll(".userDisplay .unbooked");
 for(let i=0; i<bookButtons.length; i++){
     bookButtons[i].addEventListener('click', function(){
         bookButtons[i].classList.remove("unbooked");
         bookButtons[i].classList.add("booked");
         bookButtons[i].innerHTML = "Session Booked";
+    });
+}
+
+// add accept/reject functionality to mentor buttons
+const mentorAccept = document.querySelectorAll(".mentorDisplay .accept");
+const mentorReject  = document.querySelectorAll(".reject");
+for(let i=0; i<mentorAccept.length; i++){
+    mentorAccept[i].addEventListener('click', function(){
+        mentorAccept[i].classList.remove("accept");
+        mentorAccept[i].classList.remove("booked");
+        mentorReject[i].style.display = "none";
+        mentorAccept[i].classList.add("accepted");
+        mentorAccept[i].innerHTML = "Session Booked";
     });
 }
