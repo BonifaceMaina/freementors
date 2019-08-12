@@ -22,7 +22,7 @@ const validateRegister = () => {
     }
 }
 
-// add booking functionality to user buttons
+// mirror booking functionality to user buttons
 const bookButtons = document.querySelectorAll(".userDisplay .unbooked");
 for(let i=0; i<bookButtons.length; i++){
     bookButtons[i].addEventListener('click', function(){
@@ -32,7 +32,7 @@ for(let i=0; i<bookButtons.length; i++){
     });
 }
 
-// add accept functionality to mentor buttons
+// mirror accept functionality to mentor buttons
 const mentorAccept = document.querySelectorAll(".mentorDisplay .accept");
 const mentorReject  = document.querySelectorAll(".reject");
 for(let i=0; i<mentorAccept.length; i++){
@@ -45,7 +45,7 @@ for(let i=0; i<mentorAccept.length; i++){
     });
 }
 
-// add reject functionality to mentor buttons
+// mirror reject functionality to mentor buttons
 const holdingDiv = document.querySelectorAll(".mentorDisplay");
 for(let i=0; i<mentorReject.length; i++){
     mentorReject[i].addEventListener('click', function(){
@@ -60,5 +60,14 @@ for(let i=0; i<makeMentor.length; i++){
         makeMentor[i].classList.add("booked");
         makeMentor[i].classList.remove("unbooked");
         makeMentor[i].innerHTML = "Mentor";        
+    });
+}
+
+// mirror delete comment functionality
+const commentButton = document.querySelectorAll(".commented button");
+const commentDiv = document.querySelectorAll(".commented");
+for(let i=0; i<commentButton.length; i++){
+    commentButton[i].addEventListener('click', function(){
+        commentDiv[i].style.display = "none";       
     });
 }
