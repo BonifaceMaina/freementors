@@ -14,21 +14,23 @@
         </div>   
         <div class="column registration">
             <!-- <h2>Free Mentors</h2> -->
-            <form class="registration-form">
+        <form action="/user.html" class="registration-form" name="regform" onsubmit=" validateRegister();">
             <h3>Sign Up Here</h3>
-            <p> <input type="text" class="inline name" placeholder="First Name"></p>
-            <p> <input type="text" class="inline" placeholder="Last Name"></p>
-            <p> <input type="email" placeholder="Email"></p>
-            <p> <input type="password" class="inline name" placeholder="Password"></p>
-            <p> <input type="password" class="inline" placeholder="Confirm Password"></p>
-            <p> <input type="text" placeholder="Address"></p>
-            <p> <input type="text" placeholder="Bio"></p>
-            <p> <input type="text" class="inline name" placeholder="Occupation"></p>
-            <p> <input type="text" class="inline" placeholder="Expertise"></p>
-            <p><a href="user.html"><input type="submit" value="Register"></a> </p>
+            <p> <input type="text" name="fname" class="inline name" placeholder="First Name" required></p>
+            <p id="error"></p>
+            <p> <input type="text" name="lname" class="inline" placeholder="Last Name" required></p>
+            <p> <input type="email" name="email" placeholder="Email" required></p>
+            <p> <input type="password" name="pass" class="inline name" placeholder="Password" required></p>
+            <p> <input type="password" name="pass2" class="inline" placeholder="Confirm Password" required></p>
+            <p> <input type="text" name="address" placeholder="Address" required></p>
+            <p> <input type="text" name="bio" placeholder="Bio" required></p>
+            <p> <input type="text" name="occupation" class="inline name" placeholder="Occupation" required></p>
+            <p> <input type="text" name="expertise" class="inline" placeholder="Expertise"required></p>
+            <p><input type="submit" value="Register"></p>
             <p class="login">Already have an account? <a href="login.html">Log In</a></p>
-            </form>
+        </form>
         </div>
     </div>
+    <script src="scripts.js" type="text/javascript"></script>
 </body>
 </html>
