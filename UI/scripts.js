@@ -20,5 +20,4 @@ const validateRegister = () => {
         alert("Passwords do not match");
         return false;
     }
-
 }
