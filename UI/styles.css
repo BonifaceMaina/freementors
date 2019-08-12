@@ -5,7 +5,7 @@ body, html{
     font-size: 20px;
     color: #e3e2df;
     /* margin: 0; */
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     height: 100%;
 }
@@ -214,6 +214,38 @@ body, html{
 .infotable td, th{
     border-bottom: 1px solid #ddd;
     padding: 10px;
+}
+
+/* css for the comment section */
+.commented{
+    border-bottom: 1px solid #5a3d5c;
+}
+.commented p{
+    margin-right: none;
+    margin-left: auto;
+    font-size: 15px;
+    /* border-bottom: 1px solid #200f21; */
+}
+
+.commented textarea{
+    background: darkgrey;
+    text-align: left;
+}
+
+.comment{
+    background: #888;
+    padding: 10px 20px 10px 10px;
+}
+.comment input {
+    background: #a72693;
+    color: white;
+    height: 30px;
+    border: none;
+}
+
+textarea{
+    margin: 10px 60px 0 0;
+    width: 100%;
 }
 
 /* css for smaller devices */
