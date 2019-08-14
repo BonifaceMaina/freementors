@@ -78,6 +78,9 @@ body, html{
 .registration input[type="submit"]:hover{
     background: #17c;
 }
+button{
+    outline: none;
+}
 
 .login, a:link{
     text-align: center;
@@ -174,7 +177,7 @@ body, html{
 }
 
 .booked{
-    background-color: #038C73;
+    background-color: #02732A;
 }
 
 .booked:hover{

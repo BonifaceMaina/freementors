@@ -7,7 +7,6 @@ const validateRegister = () => {
         if(element.value.trim() == ""){
             event.preventDefault();
            element.style.border = "1px solid red";
-           alert("No empty strings allowed");
             return false;
         }
     });  
@@ -17,7 +16,6 @@ const validateRegister = () => {
         event.preventDefault();
         pass2.style.border = "1px solid red";
         pass.style.border = "1px solid red";
-        alert("Passwords do not match");
         return false;
     }
 }
