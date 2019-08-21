@@ -1,3 +1,4 @@
+const config = require('config');
 const chai = require('chai');
 const assert = require('assert');
 const chaiHttp = require('chai-http');
