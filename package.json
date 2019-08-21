@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "mocha  --require @babel/register tests/ --coverage",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "NODE_ENV=test nyc --reporter=text mocha tests/",
+    "test:coverage": "mocha --coverage",
+    "test:coveralls": "mocha --coverage --coverageReporter=text-lcov | coveralls"
+
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,10 @@
   "homepage": "https://github.com/BonifaceMaina/freementors#readme",
   "dependencies": {
     "@types/chai": "^4.2.0",
+    "bcrypt": "^3.0.6",
+    "config": "^3.2.2",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "request": "^2.88.0"
   },
   "devDependencies": {
@@ -33,6 +38,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.0.6",
+    "joi": "^14.3.1",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
     "nyc": "^14.1.1"
