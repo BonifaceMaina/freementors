@@ -2,7 +2,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - node
+  - 10
 branches:
   only:
     - develop
@@ -13,6 +13,6 @@ cache:
     - node_modules
 
 script:
-  - npm run test:coveralls
+  - npm run test
 after_success:
-  - npm run coverage
+  - npm run coveralls

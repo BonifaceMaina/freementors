@@ -28,7 +28,7 @@ describe('check auth routes', () => {
         .send({
             firstName: 'Boniface', 
             lastName: 'Maina',
-            email: 'karisbm@gmail.com', 
+            email: 'karibm@gmail.com', 
             password: 'eagle15', 
             address: 'Kigali', 
             bio: 'Developer, Farmer',
