@@ -1,3 +1,4 @@
+const config = require('config');
 const chai = require('chai');
 const assert = require('assert');
 const chaiHttp = require('chai-http');
@@ -28,7 +29,7 @@ describe('check auth routes', () => {
         .send({
             firstName: 'Boniface', 
             lastName: 'Maina',
-            email: 'karisbm@gmail.com', 
+            email: 'karibm@gmail.com', 
             password: 'eagle15', 
             address: 'Kigali', 
             bio: 'Developer, Farmer',
