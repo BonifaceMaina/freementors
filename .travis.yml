@@ -1,16 +1,23 @@
+sudo: false
+
 language: node_js
-git:
-  depth: 3
 node_js:
-  - "10"
-install:       npm install
+  - 10
+branches:
+  only:
+    - develop
+install:
+  - npm install
 cache:
   directories:
     - node_modules
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
-  - npm test
+  - npm run test
+after_script:
+  - ./cc-test-reporter after-build --exit-code $
 after_success:
-- npm run coveralls
-
-notifications:
-email: false
+  - npm run coveralls

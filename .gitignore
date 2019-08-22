@@ -1,5 +1,8 @@
 node_modules/
 
-.nyc_output/
-
 config/
+
+.circleci/
+
+.nyc_output/ 
+

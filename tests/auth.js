@@ -1,42 +1,40 @@
+const config = require('config');
 const chai = require('chai');
+const assert = require('assert');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const expect = chai.expect;
 const request = require('request');
 const app = require('../index');
+var should = require('chai').should();
 
-
-
-describe('check auth routes', function(){
+describe('check auth routes', () => {
 
     it('should create a user successfully', (done) => {
-        chai.request(app)
-        .post({uri: baseUrl + 'auth/signup'})
+        chai.request("http://localhost:3000/api/v1")
+        .post('/auth/signup')
         .send({
-            firstname: 'Boniface', 
-            lastname: 'Maina',
-            email: 'karisbm@gmail.com', 
+            firstName: 'Boniface', 
+            lastName: 'Maina',
+            email: 'karibm@gmail.com', 
             password: 'eagle15', 
             address: 'Kigali', 
             bio: 'Developer, Farmer',
             occupation: 'Code Ninja',
-            expertise: 'experienced juggler',
-            is_mentor: 'false'
+            expertise: 'experienced juggler'
         })
         .end((error, response) => {
+            assert.equal(response.statusCode, 201);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response.statusCode).to.equal(201);
-            expect(response).to.have.property('message','User created successfully');
-            console.log(url);
+            expect(response.body).to.have.property('message','User created successfully');
             if(error) done(error);
             done();
         });
     });
 
     it('should not allow invalid firstname', (done) => {
-        chai.request(app)
-        .post({uri: baseUrl + 'auth/signup'})
+        chai.request("http://localhost:3000/api/v1/")
+        .post('auth/signup')
         .send({
             firstname: '987453', 
             lastname: 'Maina',
@@ -48,18 +46,17 @@ describe('check auth routes', function(){
             expertise: 'experienced juggler',
         })
         .end((error, response) => {
+            assert.equal(response.statusCode, 400);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response.statusCode).to.equal(400);
-            expect(response).to.have.property('error', 'Please enter a valid firstname');
+            // expect(response.body).to.have.property('message','User created successfully');
             if(error) done(error);
             done();
         });
     });
 
     it('should not allow invalid lastname', (done) => {
-        chai.request(app)
-        .post({uri: baseUrl + 'auth/signup'})
+        chai.request("http://localhost:3000/api/v1/")
+        .post('auth/signup')
         .send({
             firstname: 'Boniface', 
             lastname: '3456457',
@@ -71,18 +68,16 @@ describe('check auth routes', function(){
             expertise: 'experienced juggler',
         })
         .end((error, response) => {
+            assert.equal(response.statusCode, 400);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response.statusCode).to.equal(400);
-            expect(response).to.have.property('error', 'Please enter a valid lastname');
             if(error) return done();
             done();
         });
     });
 
     it('should not allow invalid firstname', (done) => {
-        chai.request(app)
-        .post({uri: baseUrl + 'auth/signup'})
+        chai.request('http://localhost:3000/api/v1/')
+        .post('auth/signup')
         .send({
             firstname: '987453', 
             lastname: 'Maina',
@@ -94,18 +89,16 @@ describe('check auth routes', function(){
             expertise: 'experienced juggler',
         })
         .end((error, response) => {
+            assert.equal(response.statusCode, 400);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response.statusCode).to.equal(201);
-            expect(response).to.have.property('error', 'Please enter a valid firstname');
             if(error) return done();
             done();
         });
     });
 
     it('should not allow invalid emails', (done) => {
-        chai.request(app)
-        .post({uri: baseUrl + 'auth/signup'})
+        chai.request('http://localhost:3000/api/v1/')
+        .post('auth/signup')
         .send({
             firstname: 'Boniface', 
             lastname: 'Maina',
@@ -117,18 +110,16 @@ describe('check auth routes', function(){
             expertise: 'experienced juggler',
         })
         .end((error, response) => {
+            assert.equal(response.statusCode, 400);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response).to.have.property('error', 'Please enter a valid email address');
-
             if(error) return done();
             done();
         });
     });
 
     it('should not allow one email twice', (done) => {
-        chai.request(app)
-        .post({uri: baseUrl + 'auth/signup'})
+        chai.request('http://localhost:3000/api/v1/')
+        .post('auth/signup')
         .send({
             firstname: 'Boniface', 
             lastname: 'Maina',
@@ -140,9 +131,8 @@ describe('check auth routes', function(){
             expertise: 'experienced juggler',
         })
         .end((error, response) => {
+            assert.equal(response.statusCode, 400);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response).to.have.property('error', 'Email already taken');
             if(error) return done();
             done();
         });
