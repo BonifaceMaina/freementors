@@ -17,11 +17,9 @@ describe('login tests', function(){
         })
         .end((error, response) => {
             assert.equal(response.statusCode, 200);
-            // expect(response).to.be.an('object');
+            expect(response).to.be.an('object');
             expect(response).to.include('message');
-            // expect(response.statusCode).to.equal(200);
             expect(response).to.have.property('message','User is successfully logged in');
-            console.log(url);
             if(error) done(error);
             done();
         });
