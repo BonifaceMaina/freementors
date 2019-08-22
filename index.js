@@ -6,10 +6,8 @@ const sessions = require('./routes/sessions');
 const app = express();
 
 if(!config.get('privateKey')){
-    console.error('FATAL: No private key defined in config');
+	console.error('FATAL: No private key defined in config');
 }
-
-
 app.use(express.json());
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/mentors', mentors);
@@ -18,10 +16,7 @@ const port = process.env.PORT || 3000;
 
 // if(!module.parent){ app.listen(port); }
 if (process.env.NODE_ENV !== 'test') {
-    // app.listen(port);
-    app.listen(port, ()=> console.log(`Listening on port ${port}...`));
-  }
-
-
+	// app.listen(port);
+	app.listen(port, ()=> console.log(`Listening on port ${port}...`));
+}
 module.exports = app;
-// export default app
