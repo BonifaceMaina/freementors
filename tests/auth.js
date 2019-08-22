@@ -5,20 +5,10 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const expect = chai.expect;
 const request = require('request');
-const baseUrl = 'http://localhost:3000/api/v1/';
 const app = require('../index');
 var should = require('chai').should();
 
 describe('check auth routes', () => {
-
-    it('returns the get method of the base auth', (done) => {
-        request.get({url: baseUrl + 'auth'}, 
-        function(error, response, body){
-            expect(response.statusCode).to.equal(200);
-            // console.log(url);
-            done();
-        });
-    });
 
     it('should create a user successfully', (done) => {
         chai.request("http://localhost:3000/api/v1")
