@@ -9,16 +9,20 @@ describe('check mentor routes', function(){
     it('returns all mentors', function(done){
         chai.request("http://localhost:3000/api/v1/mentors")
         .get('/')
-        .end((request,response) => {
+        .end((error,response) => {
             expect(response.statusCode).to.equal(401);
+            if(error) done(error);
+            done();        
         });    
     });
 
     it('returns a specific mentor', function(done){
-        chai.request("http://localhost:3000/api/v1/mentors/:mentorId")
+        chai.request("http://localhost:3000/api/v1/mentors/1")
         .get('/')
-        .end((request,response) => {
+        .end((error,response) => {
             expect(response.statusCode).to.equal(401);
+            if(error) done(error);
+            done();
         });    
     });
 });

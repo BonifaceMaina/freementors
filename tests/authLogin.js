@@ -8,7 +8,7 @@ const app = require('../index');
 
 describe('login tests', function(){
 
-    it('should create a user successfully', (done) => {
+    it('should login a user successfully', (done) => {
         chai.request('http://localhost:3000/api/v1')
         .post('/auth/signin')
         .send({

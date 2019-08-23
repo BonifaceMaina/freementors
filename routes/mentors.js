@@ -6,7 +6,7 @@ const userAuth = require('../middleware/userAuth');
 
 router.get('/', userAuth, usersController.viewAllMentors);    
 
-router.get('/:mentorId', (req, res) => {
+router.get('/:mentorId', userAuth,(req, res) => {
     res.send('view one mentor');
 });
 

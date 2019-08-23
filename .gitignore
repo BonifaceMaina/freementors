@@ -2,7 +2,3 @@ node_modules/
 
 config/
 
-.circleci/
-
-.nyc_output/ 
-
