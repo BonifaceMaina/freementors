@@ -1,7 +1,7 @@
 const usersController =require('../controllers/usersController');
+const userAuth = require('../middleware/userAuth');
 const express = require('express');
 let router = express.Router();
-const userAuth = require('../middleware/userAuth');
 
 
 router.get('/', userAuth, usersController.viewAllMentors);    
