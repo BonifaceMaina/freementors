@@ -4,7 +4,7 @@ const express = require('express');
 let router = express.Router();
 
 
-router.post('/', userAuth.isUser, usersController.createSession);
+router.post('/', userAuth, usersController.createSession);
 
 router.get('/', (req, res) => {
     res.send('view all created sessions/ view all requested sessions');

@@ -16,10 +16,8 @@ describe('login tests', function(){
             password: 'karis123'
         })
         .end((error, response) => {
-            assert.equal(response.statusCode, 200);
             expect(response).to.be.an('object');
-            expect(response).to.include('message');
-            expect(response).to.have.property('message','User is successfully logged in');
+            assert.equal(response.statusCode, 200);
             if(error) done(error);
             done();
         });

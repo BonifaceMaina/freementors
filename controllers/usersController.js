@@ -63,10 +63,9 @@ class UsersController {
 
     }
 
-    static viewAllSessions(req, res){
+    // static viewAllSessions(req, res){
         
-    }
+    // }
 
-   
 }
 module.exports =  UsersController;
