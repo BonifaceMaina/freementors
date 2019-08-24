@@ -4,7 +4,9 @@ const router = express.Router();
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const users = require('../models/users');
+const users = require('../models/usersModel');
+const mentors = require('../models/mentorsModel');
+
 
 router.get('/', (req, res) => {
 	res.send('signup');
@@ -35,7 +37,8 @@ router.post('/signup', (req, res) => {
 		id: user.id,
 		firstName: user.firstName,
 		email: user.email,
-		bio: user.bio,
+		isMentor: user.isMentor,
+		admin:user.admin
 	}, config.get('privateKey'));
 	const userExists = users.some(user => user.email === req.body.email);
 	if(!userExists){
@@ -72,7 +75,9 @@ router.post('/signin', (req, res) => {
 		return;
 	}
 	const userExists = users.find(user => user.email === req.body.email);
+	const mentorExists = mentors.find(mentor => mentor.email === req.body.email);
 
+	// check if user is in user database
 	if(userExists){
 		const comparePassword = bcrypt.compareSync(req.body.password, userExists.password);
 		if(comparePassword){
@@ -80,7 +85,8 @@ router.post('/signin', (req, res) => {
 				id: userExists.id,
 				firstName: userExists.firstName,
 				email: userExists.email,
-				bio: userExists.bio
+				isMentor: userExists.isMentor,
+				admin: userExists.admin
 			}, config.get('privateKey'));
 			res.status(200).json({
 				status: 200, 
@@ -96,7 +102,34 @@ router.post('/signin', (req, res) => {
 				message: 'Invalid password'
 			});
 		}
-	}else{
+	}else if(mentorExists){
+	// check if mentor is in mentor database
+		const comparePassword = bcrypt.compareSync(req.body.password, mentorExists.password);
+		if(comparePassword){
+			const token = jwt.sign({
+				mentorId: mentorExists.mentorId,
+				firstName: mentorExists.firstName,
+				email: mentorExists.email,
+				isMentor: mentorExists.isMentor,
+				admin: mentorExists.admin
+			}, config.get('privateKey'));
+			res.status(200).json({
+				status: 200, 
+				message: 'User is successfully logged in', 
+				data:{
+					token: token, 
+					email: mentorExists.email
+				}
+			});
+		}else{
+			return res.status(401).json({
+				status: 401, 
+				message: 'Invalid password'
+			});
+		}
+
+	}
+	else{
 		return res.status(401).json({
 			status: 401,
 			message: 'User with that email not found'

@@ -35,6 +35,7 @@ class UsersController {
             res.status(400).send(error.details[0].message);
             return;
         }
+        // check if mentor with the ID exists
         const mentor = mentors.some(mentors => mentors.mentorId === req.body.mentorId);
         if(mentor){
             const session = {
@@ -58,14 +59,19 @@ class UsersController {
                 }
             });
         }
-
-        
-
     }
 
-    // static viewAllSessions(req, res){
+    static viewAllSessions(req, res){
+        if(req.user.isMentor == true){
+            const mentorSessions = sessions.filter(c => c.mentorId == req.user.mentorId);
+            return res.status(200).json({ status: 200, data: mentorSessions});
+        }
+        else if(req.user.isMentor == false){
+            return res.status(200).json({ status: 200, data: 'mentorSessions'});
+
+        }
         
-    // }
+    }
 
 }
 module.exports =  UsersController;

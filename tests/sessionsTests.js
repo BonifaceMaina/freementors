@@ -32,6 +32,18 @@ describe('check session routes', function(){
         });
     });
 
+    it('returns all sessions for a mentor', function(done){
+        chai.request("http://localhost:3000/api/v1/sessions")
+        .get('/')
+        .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW50b3JJZCI6MiwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNiQGdtYWlsLmNvbSIsImlzTWVudG9yIjp0cnVlLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTU2NjY4MTMwN30.-JhfbuogS8jeAeoBxCm5hFHF7gngCPI_RmdKVaiw9-8')
+        .end((error,response) => {
+            expect(response.statusCode).to.equal(200);
+            expect(response).to.be.an('object');
+            if(error) done(error);
+            done();        
+        });
+    });
+
     it('changes status of a session to accepted', function(done){
         chai.request("http://localhost:3000/api/v1/sessions")
         .post('/')
