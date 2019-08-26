@@ -100,5 +100,24 @@ class UsersController {
             return res.status(403).json({ status: 403, message:'Unauthorized access.'});
         }
     }
+
+    // mentor to reject session
+    static rejectSession(req, res){
+        if(req.user.isMentor == true){
+            const mentorSession = sessions.find(sessions => sessions.sessionId == req.params.sessionId);
+            if(mentorSession){
+                if(req.user.id == mentorSession.mentorId){
+                    mentorSession.status = 'rejected';
+                    return res.status(200).json({ status: 200, data: mentorSession});
+                }else{
+                    return res.status(403).json({ status: 403, message:'Unauthorized access. You can only view your sessions'});
+                }
+            }else{
+                return res.status(404).json({ status: 404, message:'You do not have a session with that ID'});
+            }
+        }else{
+            return res.status(403).json({ status: 403, message:'Unauthorized access.'});
+        }
+    }
 }
 module.exports =  UsersController;
