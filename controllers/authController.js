@@ -74,10 +74,8 @@ class authController{
 		res.status(400).send(error.details[0].message);
 		return;
 	}
-	const userExists = users.find(user => user.email === req.body.email);
-	const mentorExists = mentors.find(mentor => mentor.email === req.body.email);
-
 	// check if user is in user database
+	const userExists = users.find(user => user.email === req.body.email);
 	if(userExists){
 		const comparePassword = bcrypt.compareSync(req.body.password, userExists.password);
 		if(comparePassword){
@@ -102,31 +100,31 @@ class authController{
 				message: 'Invalid password'
 			});
 		}
-	}else if(mentorExists){
-	// check if mentor is in mentor database
-		const comparePassword = bcrypt.compareSync(req.body.password, mentorExists.password);
-		if(comparePassword){
-			const token = jwt.sign({
-				mentorId: mentorExists.mentorId,
-				firstName: mentorExists.firstName,
-				email: mentorExists.email,
-				isMentor: mentorExists.isMentor,
-				admin: mentorExists.admin
-			}, config.get('privateKey'));
-			res.status(200).json({
-				status: 200, 
-				message: 'User is successfully logged in', 
-				data:{
-					token: token, 
-					email: mentorExists.email
-				}
-			});
-		}else{
-			return res.status(401).json({
-				status: 401, 
-				message: 'Invalid password'
-			});
-		}
+	// }else if(mentorExists){
+	// // check if mentor is in mentor database
+	// 	const comparePassword = bcrypt.compareSync(req.body.password, mentorExists.password);
+	// 	if(comparePassword){
+	// 		const token = jwt.sign({
+	// 			mentorId: mentorExists.mentorId,
+	// 			firstName: mentorExists.firstName,
+	// 			email: mentorExists.email,
+	// 			isMentor: mentorExists.isMentor,
+	// 			admin: mentorExists.admin
+	// 		}, config.get('privateKey'));
+	// 		res.status(200).json({
+	// 			status: 200, 
+	// 			message: 'User is successfully logged in', 
+	// 			data:{
+	// 				token: token, 
+	// 				email: mentorExists.email
+	// 			}
+	// 		});
+	// 	}else{
+	// 		return res.status(401).json({
+	// 			status: 401, 
+	// 			message: 'Invalid password'
+	// 		});
+	// 	}
 
 	}
 	else{

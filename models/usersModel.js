@@ -9,7 +9,7 @@ const users = [
         bio: "animal lover",
         occupation: "teacher",
         expertise: "dfgsdfhdfg",
-        isMentor:false,
+        isMentor:true,
         admin:false
     }
 ];
