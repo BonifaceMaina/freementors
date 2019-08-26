@@ -3,13 +3,15 @@ const sessions = require('../models/sessionsModel');
 
 const Joi = require('joi');
 
-// gets all mentors in the db
 class UsersController {
+    // gets all mentors in the db
+    
     static viewAllMentors(req, res){
         return res.status(200).json({ status: 200, data: mentors});
     }
 
     // viewing one mentor
+
     static viewOneMentor(req, res){
         const oneMentor = mentors.find(mentor => mentor.mentorId == req.params.mentorId);
         if (oneMentor){
@@ -20,6 +22,7 @@ class UsersController {
     }
 
     // creating a new session (user)
+
     static createSession(req, res){
         const validateCreateSession = (request) => {
             const schema ={
@@ -58,8 +61,12 @@ class UsersController {
                     status: session.status
                 }
             });
+        }else{
+            return res.status(404).json({ status: 404, message: 'No mentor with that ID'});
         }
     }
+
+    // view all sessions (both mentor and user)
 
     static viewAllSessions(req, res){
         if(req.user.isMentor == true){
@@ -68,10 +75,10 @@ class UsersController {
         }
         else if(req.user.isMentor == false){
             return res.status(200).json({ status: 200, data: 'mentorSessions'});
-
         }
-        
+        else{
+            return res.status(403).json({ status: 200, message:'Unauthorized access.'});
+        }
     }
-
 }
 module.exports =  UsersController;
