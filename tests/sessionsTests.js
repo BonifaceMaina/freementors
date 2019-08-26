@@ -93,25 +93,56 @@ describe('check session routes', function(){
         });
     });
 
+// mentor reject session tests
 
+it('changes status of a session to rejected', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .patch('/1/reject')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNAZ21haWwuY29tIiwiaXNNZW50b3IiOnRydWUsImFkbWluIjpmYWxzZSwiaWF0IjoxNTY2ODI2MzYxfQ.jhKnpzUNbTnZovQHWxtMQ7DXTetOv-QIYNz5H4B9MA4')
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(200);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
 
-    // it('changes status of a session to rejected', function(done){
-    //     request.patch({url:baseUrl + 'sessions/:sessionId/reject'}, 
-    //     function(error, response, body){
-    //         expect(response.statusCode).to.equal(200);
-    //         console.log(body);
-    //         done();
-    //     });
-    // });
+it('should only allow mentors to reject sessions', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .patch('/1/reject')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNAZ21haWwuY29tIiwiaXNNZW50b3IiOnRydWUsImFkbWluIjpmYWxzZSwiaWF0IjoxNTY2ODI2MzYxfQ.jhKnpzUNbTnZovQHWxtMQ7DXTetOv-QIYNz5H4B9MA4')
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(400);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
 
-    // it('posts session review', function(done){
-    //     request.post({url:baseUrl + 'sessions/:sessionId/review'}, 
-    //     function(error, response, body){
-    //         expect(response.statusCode).to.equal(200);
-    //         console.log(body);
-    //         done();
-    //     });
-    // });
+it('should not reject another mentor\'s session', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .patch('/2/reject')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNAZ21haWwuY29tIiwiaXNNZW50b3IiOnRydWUsImFkbWluIjpmYWxzZSwiaWF0IjoxNTY2ODI2MzYxfQ.jhKnpzUNbTnZovQHWxtMQ7DXTetOv-QIYNz5H4B9MA4')
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(403);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
+
+it('should not reject a non-existent session', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .patch('/456/reject')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW50b3JJZCI6MiwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNiQGdtYWlsLmNvbSIsImlzTWVudG9yIjp0cnVlLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTU2NjY4MTMwN30.-JhfbuogS8jeAeoBxCm5hFHF7gngCPI_RmdKVaiw9-8')
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(404);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
+
 
     // it('deletes a session review', function(done){
     //     request.delete({url:baseUrl + 'sessions/:sessionId/review/delete'}, 
