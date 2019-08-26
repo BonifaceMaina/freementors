@@ -1,4 +1,6 @@
 const users = require('../models/usersModel');
+const mentors = require('../models/mentorsModel');
+
 
 class AdminController{
     static upgradeUser(req, res){
@@ -8,6 +10,7 @@ class AdminController{
             if(userToUpgrade){
                 if(userToUpgrade.isMentor == false){
                     userToUpgrade.isMentor = true;
+                    mentors.push(userToUpgrade);
                     res.status(200).json({
                         status: 200,
                         message: 'User account changed to mentor',
