@@ -5,7 +5,6 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const users = require('../models/usersModel');
-const mentors = require('../models/mentorsModel');
 
 
 class authController{
@@ -47,6 +46,7 @@ class authController{
 			data:{
 				token: token,
 				message: 'User created successfully',
+				id: user.id,
 				firstName: user.firstName,
 				lastName: user.lastName,
 				email: user.email,
@@ -54,7 +54,9 @@ class authController{
                 password: password,
 				bio: user.bio,
 				occupation: user.occupation,
-				expertise: user.expertise
+				expertise: user.expertise,
+				isMentor: false,
+				admin: false
 			}
 		});
 	}else{
@@ -100,32 +102,6 @@ class authController{
 				message: 'Invalid password'
 			});
 		}
-	// }else if(mentorExists){
-	// // check if mentor is in mentor database
-	// 	const comparePassword = bcrypt.compareSync(req.body.password, mentorExists.password);
-	// 	if(comparePassword){
-	// 		const token = jwt.sign({
-	// 			mentorId: mentorExists.mentorId,
-	// 			firstName: mentorExists.firstName,
-	// 			email: mentorExists.email,
-	// 			isMentor: mentorExists.isMentor,
-	// 			admin: mentorExists.admin
-	// 		}, config.get('privateKey'));
-	// 		res.status(200).json({
-	// 			status: 200, 
-	// 			message: 'User is successfully logged in', 
-	// 			data:{
-	// 				token: token, 
-	// 				email: mentorExists.email
-	// 			}
-	// 		});
-	// 	}else{
-	// 		return res.status(401).json({
-	// 			status: 401, 
-	// 			message: 'Invalid password'
-	// 		});
-	// 	}
-
 	}
 	else{
 		return res.status(401).json({
