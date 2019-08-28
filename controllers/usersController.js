@@ -160,5 +160,21 @@ class UsersController {
             return res.status(403).json({ status: 403, message:'No session with that ID'});
         }
     }
+
+
+    // admin to delete given review
+    static adminDeleteReview(req, res){
+        if(req.user.admin == true){
+            const reviewToDelete = sessionReviews.find(sessionReview => sessionReview.sessionId == req.params.sessionId);
+            if(reviewToDelete){
+                sessionReviews.splice(sessionReviews.indexOf(reviewToDelete), 1);
+                return res.status(200).json({ status: 200, message:'Review successfully deleted'});
+            }else{
+                return res.status(404).json({ status: 404, message:'Review with that ID not found'});
+            }
+        }else{
+            return res.status(403).json({ status: 403, message:'Unauthorized access. You are not an admin'});
+        }
+    }
 }
 module.exports =  UsersController;

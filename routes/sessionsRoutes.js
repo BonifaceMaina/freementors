@@ -14,8 +14,6 @@ router.patch('/:sessionId/reject', userAuth, usersController.rejectSession);
 
 router.post('/:sessionId/review', userAuth, usersController.createSessionReview);
 
-router.delete('/:sessionId/review/delete', (req, res) => {
-    res.send('admin can delete a session review');
-});
+router.delete('/:sessionId/review', userAuth, usersController.adminDeleteReview);
 
 module.exports = router;
