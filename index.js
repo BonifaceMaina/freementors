@@ -3,6 +3,8 @@ const express  = require('express');
 const auth = require('./routes/authRoutes');
 const mentors = require('./routes/mentorsRoutes');
 const sessions = require('./routes/sessionsRoutes');
+const admin = require('./routes/adminRoutes');
+
 const app = express();
 
 if(!config.get('privateKey')){
@@ -12,6 +14,8 @@ app.use(express.json());
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/mentors', mentors);
 app.use('/api/v1/sessions', sessions);
+app.use('/api/v1/user/', admin);
+
 
 const port = process.env.PORT || 3000;
 
