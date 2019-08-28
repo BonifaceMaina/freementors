@@ -10,9 +10,7 @@ router.get('/', userAuth, usersController.viewAllSessions);
 
 router.patch('/:sessionId/accept', userAuth, usersController.acceptSession);
 
-router.patch('/:sessionId/reject', (req, res) => {
-    res.send('mentor accept session request');
-});
+router.patch('/:sessionId/reject', userAuth, usersController.rejectSession);
 
 router.post('/:sessionId/review', (req, res) => {
     res.send('review mentor after mentorship session');
