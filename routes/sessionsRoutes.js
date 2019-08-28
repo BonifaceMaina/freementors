@@ -6,13 +6,9 @@ let router = express.Router();
 
 router.post('/', userAuth, usersController.createSession);
 
-router.get('/', (req, res) => {
-    res.send('view all created sessions/ view all requested sessions');
-});
+router.get('/', userAuth, usersController.viewAllSessions);
 
-router.patch('/:sessionId/accept', (req, res) => {
-    res.send('mentor accept session request');
-});
+router.patch('/:sessionId/accept', userAuth, usersController.acceptSession);
 
 router.patch('/:sessionId/reject', (req, res) => {
     res.send('mentor accept session request');

@@ -4,19 +4,25 @@ const mentors = [{
     lastName: "Maina",
     email: "karisbm@gmail.com",
     address: "sdkjhk",
+    password: "$2b$10$.DgqXG93qUTq8a0ha88SBew2bZBzTK9Ymi6qeX49YWLffFRNkLSaK",
     bio: "animal lover",
     occupation: "teacher",
-    expertise: "dfgsdfhdfg"
+    expertise: "dfgsdfhdfg",
+    isMentor:true,
+    admin:false
 },
 {
     mentorId: 2,
     firstName: "dsfgsdf",
     lastName: "Maina",
-    email: "karisbm@gmail.com",
+    email: "karisb@gmail.com",
     address: "sdkjhk",
+    password: "$2b$10$.DgqXG93qUTq8a0ha88SBew2bZBzTK9Ymi6qeX49YWLffFRNkLSaK",
     bio: "animal lover",
     occupation: "teacher",
-    expertise: "dfgsdfhdfg"
+    expertise: "dfgsdfhdfg",
+    isMentor:true,
+    admin:false
 },
 {
     mentorId: 3,
@@ -26,7 +32,9 @@ const mentors = [{
     address: "sdkjhk",
     bio: "animal lover",
     occupation: "teacher",
-    expertise: "dfgsdfhdfg"
+    expertise: "dfgsdfhdfg",
+    isMentor:true,
+    admin:false
 }];
 
 module.exports = mentors;
