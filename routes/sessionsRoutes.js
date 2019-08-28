@@ -12,9 +12,7 @@ router.patch('/:sessionId/accept', userAuth, usersController.acceptSession);
 
 router.patch('/:sessionId/reject', userAuth, usersController.rejectSession);
 
-router.post('/:sessionId/review', (req, res) => {
-    res.send('review mentor after mentorship session');
-});
+router.post('/:sessionId/review', userAuth, usersController.createSessionReview);
 
 router.delete('/:sessionId/review/delete', (req, res) => {
     res.send('admin can delete a session review');

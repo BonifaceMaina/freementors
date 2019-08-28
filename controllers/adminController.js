@@ -3,13 +3,14 @@ const mentors = require('../models/mentorsModel');
 
 
 class AdminController{
+    // upgrade user to mentor status
     static upgradeUser(req, res){
-        // const mentorSession = sessions.find(sessions => sessions.sessionId == req.params.sessionId);
         const userToUpgrade = users.find(user => user.id == req.params.userId);
         if(req.user.admin == true){
             if(userToUpgrade){
                 if(userToUpgrade.isMentor == false){
                     userToUpgrade.isMentor = true;
+                    userToUpgrade.mentorId = userToUpgrade.id;
                     mentors.push(userToUpgrade);
                     res.status(200).json({
                         status: 200,

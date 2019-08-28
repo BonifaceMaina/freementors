@@ -1,5 +1,7 @@
 const mentors = require('../models/mentorsModel');
 const sessions = require('../models/sessionsModel');
+const sessionReviews = require('../models/sessionReviews');
+
 
 const Joi = require('joi');
 
@@ -74,7 +76,8 @@ class UsersController {
             return res.status(200).json({ status: 200, data: mentorSessions});
         }
         else if(req.user.isMentor == false){
-            return res.status(200).json({ status: 200, data: 'mentorSessions'});
+            const mentorSessions = sessions.filter(c => c.mentorId == req.user.menteeId);
+            return res.status(200).json({ status: 200, data: mentorSessions});
         }
         else{
             return res.status(403).json({ status: 403, message:'Unauthorized access.'});
@@ -117,6 +120,44 @@ class UsersController {
             }
         }else{
             return res.status(403).json({ status: 403, message:'Unauthorized access.'});
+        }
+    }
+
+    // create a session review
+    static createSessionReview(req, res){
+        if(req.user.isMentor == true){
+            return res.status(403).json({ status: 403, message:'Unauthorized access. Only mentees can create reviews'});
+        }
+    // check if the session exists
+        const sessionToReview = sessions.find(session => session.sessionId == req.params.sessionId);
+        if(sessionToReview){
+            if(sessionToReview.menteeId == req.user.id){
+                if(sessionToReview.status == 'accepted'){
+                    const review = {
+                        score: req.body.score,
+                        remark: req.body.remark
+                    }
+                    sessionReviews.push(review);
+                    return res.status(200).json({ 
+                        status: 200, 
+                        data: {
+                            sessionId: sessionToReview.sessionId,
+                            mentorId: sessionToReview.mentorId,
+                            menteeId: req.user.id,
+                            score: review.score,
+                            menteeFullName: req.user.firstName,
+                            remark: review.remark
+                        }
+                    });
+                }else{
+                    return res.status(403).json({ status: 403, message:'Session has not been accepted yet'});
+                }    
+            }else{
+                return res.status(403).json({ status: 403, message:'Unauthorized access. You can only review your sessions'});
+            }
+            
+        }else{
+            return res.status(403).json({ status: 403, message:'No session with that ID'});
         }
     }
 }
