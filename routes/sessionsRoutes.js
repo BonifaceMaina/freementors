@@ -1,13 +1,13 @@
+const usersController = require('../controllers/usersController');
+const userAuth = require('../middleware/userAuth');
 const express = require('express');
 let router = express.Router();
 
 
+router.post('/', userAuth, usersController.createSession);
+
 router.get('/', (req, res) => {
     res.send('view all created sessions/ view all requested sessions');
-});
-
-router.post('/', (req, res) => {
-    res.send('create mentorship session request');
 });
 
 router.patch('/:sessionId/accept', (req, res) => {
