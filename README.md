@@ -36,15 +36,21 @@ View the project endpoint documentation on [SwaggerHub](https://app.swaggerhub.c
 
 Clone the repo into your desired folder
 
-``` git clone https://github.com/BonifaceMaina/brightevents.git```
+``` 
+git clone https://github.com/BonifaceMaina/brightevents.git
+```
 
 Install project requirements
 
-```npm i```
+```
+npm i
+```
 
 Run the tests
 
-```npm test```
+```
+npm test
+```
 
 ## Author
 Created by Boniface Maina.
