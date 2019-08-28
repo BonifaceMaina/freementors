@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/BonifaceMaina/freementors.git"
   },
-  "author": "",
+  "author": "Boniface Maina",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BonifaceMaina/freementors/issues"
@@ -33,7 +33,6 @@
     "eslint": "^6.2.1",
     "joi": "^14.3.1",
     "mocha": "^6.2.0",
-    "nodemon": "^1.19.1",
-    "nyc": "^14.1.1"
+    "nodemon": "^1.19.1"
   }
 }

@@ -4,23 +4,31 @@ const sessions = [
         mentorId: 1,
         menteeId:1,
         questions:'How do I become a good writer? What is the answer to life?',
-        menteeEmail: 'james@gmail.com',
-        status: 'pending'
+        menteeEmail: 'karen@gmail.com',
+        status: 'accepted'
     },
     {
         sessionId: 2,
         mentorId: 2,
-        menteeId:1,
+        menteeId:2,
         questions:'How do I become a good writer? What is the answer to life?',
-        menteeEmail: 'james@gmail.com',
-        status: 'pending'
+        menteeEmail: 'karisbm@gmail.com',
+        status: 'accepted'
     },
     {
         sessionId: 3,
         mentorId: 2,
-        menteeId:1,
+        menteeId:2,
+        questions:'How do I become a good writer? What is the answer to life?',
+        menteeEmail: 'karisbm@gmail.com',
+        status: 'pending'
+    },
+    {
+        sessionId: 4,
+        mentorId: 2,
+        menteeId:3,
         questions:'How do I become a good writer? ',
-        menteeEmail: 'karen@gmail.com',
+        menteeEmail: 'sam@gmail.com',
         status: 'pending'
     }
 ];
