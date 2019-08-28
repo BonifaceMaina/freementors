@@ -5,10 +5,10 @@ const request = require('request');
 
 describe('check session routes', function(){
 
-    it('creates a new sessions', function(done){
+    it('creates a new session', function(done){
         chai.request("http://localhost:3000/api/v1/sessions")
         .post('/')
-        .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyQGdtYWlsLmNvbSIsImlzTWVudG9yIjpmYWxzZSwiYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjY4MjIxNDh9.6e5fHs1YoJc9nArP3fz0s9-tisIkjYt7BhpzXk4HllI')
+        .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiQm9uaWZhY2UiLCJlbWFpbCI6ImthcmlzYm1AZ21haWwuY29tIiwiaXNNZW50b3IiOmZhbHNlLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTY3MDAwMjMwfQ._IaMtX-xuzuygTav0D7MNtQ9rsQVZwOcM8wVQWu9ygE')
         .send({
             mentorId: 1,
             questions: 'how do I learn programming?'
@@ -142,6 +142,57 @@ it('should not reject a non-existent session', function(done){
         done();        
     });
 });
+
+// user review creation tests
+
+it('creates a review on accepted session', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .post('/2/review')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiQm9uaWZhY2UiLCJlbWFpbCI6ImthcmlzYm1AZ21haWwuY29tIiwiaXNNZW50b3IiOmZhbHNlLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTY3MDAwMjMwfQ._IaMtX-xuzuygTav0D7MNtQ9rsQVZwOcM8wVQWu9ygE')
+    .send({
+        score: 5,
+        remark: 'Excellent session! Real insightful to me'
+    })
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(200);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
+
+it('does not create review on pending sessions', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .post('/3/review')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiQm9uaWZhY2UiLCJlbWFpbCI6ImthcmlzYm1AZ21haWwuY29tIiwiaXNNZW50b3IiOmZhbHNlLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTY3MDAwMjMwfQ._IaMtX-xuzuygTav0D7MNtQ9rsQVZwOcM8wVQWu9ygE')
+    .send({
+        score: 5,
+        remark: 'Excellent session! Real insightful to me'
+    })
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(403);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
+
+it('allows users to review their sessions only', function(done){
+    chai.request("http://localhost:3000/api/v1/sessions")
+    .post('/4/review')
+    .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiQm9uaWZhY2UiLCJlbWFpbCI6ImthcmlzYm1AZ21haWwuY29tIiwiaXNNZW50b3IiOmZhbHNlLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTY3MDAwMjMwfQ._IaMtX-xuzuygTav0D7MNtQ9rsQVZwOcM8wVQWu9ygE')
+    .send({
+        score: 5,
+        remark: 'Excellent session! Real insightful to me'
+    })
+    .end((error,response) => {
+        expect(response.statusCode).to.equal(403);
+        expect(response).to.be.an('object');
+        if(error) done(error);
+        done();        
+    });
+});
+
 
 
     // it('deletes a session review', function(done){
