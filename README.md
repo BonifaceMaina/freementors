@@ -27,10 +27,13 @@ Admin can:
 ## UI Templates 
 The UI templates are located at [Free Mentors](https://bonifacemaina.github.io/freementors/UI/)
 
+## Heroku Deployment
+The API is hosted on Heroku [here](https://freementorsapi.herokuapp.com/)
+
 ## Project Prerequisites 
 The project is built on [NodeJS](https://nodejs.org/en/)
 
-View the [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2381456) stories
+View the [Pivotal Tracker stories](https://www.pivotaltracker.com/n/projects/2381456)
 
 View the project endpoint documentation on [SwaggerHub](https://app.swaggerhub.com/apis/Personal969/freementorsAPI/1.0.0#/)
 
