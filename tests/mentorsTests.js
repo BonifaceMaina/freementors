@@ -1,12 +1,13 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('assert');
+const app = require('../index');
 
 describe('check mentor routes', function(){
 
 	it('should get all mentors', (done) => {
-		chai.request('http://localhost:3000/api/v1')
-			.get('/mentors')
+		chai.request(app)
+			.get('/api/v1/mentors')
 			.set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNAZ21haWwuY29tIiwiYmlvIjoiYW5pbWFsIGxvdmVyIiwiaWF0IjoxNTY2NjYwNzM3fQ.RI1pwpCLVoAYI_q4TmUdHlsyz22iuemBLuj8Ihe3Lt8')
 			.end((error, response) => {
 				expect(response).to.be.an('object');
@@ -18,8 +19,8 @@ describe('check mentor routes', function(){
 	});
 
 	it('returns all mentors', function(done){
-		chai.request('http://localhost:3000/api/v1/mentors')
-			.get('/')
+		chai.request(app)
+			.get('/api/v1/mentors')
 			.set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNAZ21haWwuY29tIiwiYmlvIjoiYW5pbWFsIGxvdmVyIiwiaWF0IjoxNTY2NjYwNzM3fQ.RI1pwpCLVoAYI_q4TmUdHlsyz22iuemBLuj8Ihe3Lt8')
 			.end((error,response) => {
 				expect(response.statusCode).to.equal(200);
@@ -29,8 +30,8 @@ describe('check mentor routes', function(){
 	});
 
 	it('returns a specific mentor', function(done){
-		chai.request('http://localhost:3000/api/v1/mentors/1')
-			.get('/')
+		chai.request(app)
+			.get('/api/v1/mentors/1')
 			.set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZHNmZ3NkZiIsImVtYWlsIjoia2FyaXNAZ21haWwuY29tIiwiYmlvIjoiYW5pbWFsIGxvdmVyIiwiaWF0IjoxNTY2NjYwNzM3fQ.RI1pwpCLVoAYI_q4TmUdHlsyz22iuemBLuj8Ihe3Lt8')
 			.end((error,response) => {
 				expect(response.statusCode).to.equal(200);
