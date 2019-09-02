@@ -11,6 +11,11 @@ if(!config.get('privateKey')){
 	console.error('FATAL: No private key defined in config');
 }
 app.use(express.json());
+app.get('/api/v1/auth', (req, res)=>{
+	res.status(200).json({
+		message: 'Welcome to the FreeMentors API'
+	});
+});
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/mentors', mentors);
 app.use('/api/v1/sessions', sessions);
