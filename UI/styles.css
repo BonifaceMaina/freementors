@@ -144,6 +144,17 @@ button{
     color: white;
 }
 
+.session .book{
+    float: left;
+    border: none;
+    width: 45%;
+    height: 30px;
+    padding: 5px;
+    margin-top: 0;
+    border-radius: 10px;
+    color: white;
+}
+
 .session .reject{
     float:left
 }
@@ -206,7 +217,7 @@ button{
     margin: 5px;
 }
 
-.unbooked{
+.unbooked, .book{
     background-color: #7EA9E7;
 }
 
