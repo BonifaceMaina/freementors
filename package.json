@@ -1,0 +1,42 @@
+{
+  "name": "freementors-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production nodemon index.js",
+    "test": "NODE_ENV=  mocha tests/*.js --exit",
+    "coveralls": "NODE_ENV=test npm test && report --reporter=text-lcov | coveralls "
+  },
+  "engines": {
+    "node": "10.0.0",
+    "npm": ">=5.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BonifaceMaina/freementors.git"
+  },
+  "author": "Boniface Maina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BonifaceMaina/freementors/issues"
+  },
+  "homepage": "https://github.com/BonifaceMaina/freementors#readme",
+  "dependencies": {
+    "@types/chai": "^4.2.0",
+    "bcrypt": "^3.0.6",
+    "config": "^3.2.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "joi": "^14.3.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.6",
+    "eslint": "^6.2.1",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.1"
+  }
+}
