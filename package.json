@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production nodemon index.js",
+    "start": "NODE_ENV=production nodemon index.js --exec babel-node --preset env",
     "test": "NODE_ENV=test nyc mocha tests/*.js --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "build":"babel -d dist/server"
   },
   "engines": {
     "node": "10.0.0",
@@ -32,7 +33,9 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "chai": "^4.2.0",

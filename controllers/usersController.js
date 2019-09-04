@@ -1,9 +1,7 @@
-const mentors = require('../models/mentorsModel');
-const sessions = require('../models/sessionsModel');
-const sessionReviews = require('../models/sessionReviews');
-
-
-const Joi = require('joi');
+import mentors from '../models/mentorsModel';
+import sessions from '../models/sessionsModel';
+import sessionReviews from '../models/sessionReviews';
+import Joi from 'joi';
 
 class UsersController {
 	// gets all mentors in the db
@@ -177,4 +175,4 @@ class UsersController {
 		}
 	}
 }
-module.exports =  UsersController;
+export default UsersController;

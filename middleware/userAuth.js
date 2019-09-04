@@ -1,7 +1,7 @@
-const config = require('config');
-const jwt = require('jsonwebtoken');
+import config from 'config';
+import jwt from 'jsonwebtoken';
 
-module.exports= (req, res, next) => {
+export default(req, res, next) => {
 	const token = req.headers['token'];
 	if(!token) return res.status(401).send('Unauthorized access. Please provide token');
 	try{

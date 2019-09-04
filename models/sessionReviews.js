@@ -17,4 +17,4 @@ const sessionReviews = [
 	}
 ];
 
-module.exports = sessionReviews;
+export default sessionReviews;

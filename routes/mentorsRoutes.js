@@ -1,6 +1,6 @@
-const usersController =require('../controllers/usersController');
-const userAuth = require('../middleware/userAuth');
-const express = require('express');
+import usersController from '../controllers/usersController';
+import userAuth from '../middleware/userAuth';
+import express from 'express';
 let router = express.Router();
 
 
@@ -8,4 +8,4 @@ router.get('/', userAuth, usersController.viewAllMentors);
 
 router.get('/:mentorId', userAuth, usersController.viewOneMentor);
 
-module.exports = router;
+export default router;
