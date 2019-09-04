@@ -24,6 +24,21 @@ Admin can:
 - Upgrade user to mentor
 - Delete Session Reviews.
 
+## API Endpoints
+| Resource URL | Methods | Description |
+| -------- | ------------- | --------- |
+| `/api/v1/auth/signup` | POST  | Creates a user account |
+| `/api/V1/auth/signin/` | POST  | Logs in a user |
+| `/api/v1/users/:userId/` | PATCH  | Change a user to a mentor |
+| `/api/v1/mentors/` | GET  | Lists all mentors |
+| `/api/v1/mentors/:mentorId` | GET  | Lists one mentor |
+|  `/api/v1/sessions/` | POST | Creates a mentorship session request |
+|  `/api/v1/sessions/` | GET | Mentor/mentee sees all mentorship session requests |
+|  `/api/v1/sessions/:sessionId/accept` | PATCH | Mentor accepts a mentorship session request |
+|  `/api/v1/sessions/:sessionId/reject` | PATCH | Mentor rejects a mentorship session request |
+|  `/api/v1/sessions/:sessionId/review` | POST | Review a mentor after a mentorship session |
+|  `/api/v1/sessions/:sessionId/review` | DELETE | Delete a mentorship session review |
+
 ## UI Templates 
 The UI templates are located at [Free Mentors](https://bonifacemaina.github.io/freementors/UI/)
 
