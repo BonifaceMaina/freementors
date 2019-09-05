@@ -1,9 +1,11 @@
-import users from '../models/usersModel';
+import users from '../data/usersModel';
+import responseHelper from '../helpers/responseHelper';
+
 // import mentors from '../models/mentorsModel';
 
 class AdminValidation {
   static checkUserToUpgrade(req, res, next) {
-    const userToUpgrade = users.find((user) => user.id === req.params.userId);
+    const userToUpgrade = users.find((user) => user.id == req.params.userId);
     if (req.user.admin === true) {
       if (userToUpgrade) {
         if (userToUpgrade.isMentor === false) {
@@ -12,13 +14,13 @@ class AdminValidation {
           req.user = userToUpgrade;
           next();
         } else {
-          return res.status(400).json({ status: 400, message: 'User is already a mentor' });
+          return responseHelper.errorMessage(400, 'User is already a mentor', res)
         }
       } else {
-        return res.status(400).json({ status: 404, message: 'User not found' });
+        return responseHelper.errorMessage(400, 'User not found', res)
       }
     } else {
-      return res.status(403).json({ status: 403, message: 'Unauthorized access' });
+      return responseHelper.errorMessage(403, 'Unauthorized access', res)
     }
   }
 }

@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/BonifaceMaina/freementors.svg?branch=ft-api-admin-delete-session-review-168022022)](https://travis-ci.org/BonifaceMaina/freementors)
+[![Build Status](https://travis-ci.org/BonifaceMaina/freementors.svg?branch=develop)](https://travis-ci.org/BonifaceMaina/freementors)
 [![Maintainability](https://api.codeclimate.com/v1/badges/79c528f6c6dd6e23b15b/maintainability)](https://codeclimate.com/github/BonifaceMaina/freementors/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/BonifaceMaina/freementors/badge.svg?branch=ft-api-signup-168022030)](https://coveralls.io/github/BonifaceMaina/freementors?branch=ft-api-signup-168022030)
 

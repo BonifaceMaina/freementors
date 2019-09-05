@@ -1,7 +1,8 @@
 import config from 'config';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import users from '../models/usersModel';
+import users from '../data/usersModel';
+import responseHelper from '../helpers/responseHelper';
 
 class CheckUser {
   static userExistsReg(req, res, next) {
@@ -32,10 +33,7 @@ class CheckUser {
       req.token = token;
       next();
     } else {
-      return res.status(409).json({
-        status: 409,
-        error: 'That email is already in use',
-      });
+      return responseHelper.errorMessage(409, 'That email is already in use', res);
     }
   }
 
@@ -55,16 +53,10 @@ class CheckUser {
         req.user = userExists;
         next();
       } else {
-        return res.status(401).json({
-          status: 401,
-          message: 'Invalid password',
-        });
+      return responseHelper.errorMessage(401, 'Invalid password', res);
       }
     } else {
-      return res.status(401).json({
-        status: 401,
-        message: 'User with that email not found',
-      });
+      return responseHelper.errorMessage(409, 'User with that email not found', res);
     }
   }
 }

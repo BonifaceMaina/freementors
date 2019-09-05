@@ -1,7 +1,9 @@
 import Joi from 'joi';
-import mentors from '../models/mentorsModel';
-import sessions from '../models/sessionsModel';
-import sessionReviews from '../models/sessionReviews';
+import mentors from '../data/mentorsModel';
+import sessions from '../data/sessionsModel';
+import sessionReviews from '../data/sessionReviews';
+import responseHelper from '../helpers/responseHelper';
+
 
 class SessionsValidate {
   static createSession(req, res, next) {
@@ -16,8 +18,7 @@ class SessionsValidate {
     const { error } = validateCreateSession(req.body);
 
     if (error) {
-      res.status(400).send(error.details[0].message);
-      return;
+      return responseHelper.errorMessage(400, error.details[0].message, res);
     }
     // check if mentor with the ID exists
     const mentor = mentors.some((oneMentor) => oneMentor.mentorId === req.body.mentorId);
@@ -33,7 +34,7 @@ class SessionsValidate {
       req.session = session;
       next();
     } else {
-      return res.status(404).json({ status: 404, message: 'No mentor with that ID' });
+      return responseHelper.errorMessage(404, 'No mentor with that ID', res);
     }
   }
 
@@ -46,9 +47,8 @@ class SessionsValidate {
       const mentorSessions = sessions.filter((c) => c.menteeId === req.user.id);
       req.mentorSessions = mentorSessions;
       next();
-      // return res.status(200).json({ status: 200, data: mentorSessions});
     } else {
-      return res.status(403).json({ status: 403, message: 'Unauthorized access.' });
+      return responseHelper.errorMessage(403, 'Unauthorized access.', res);
     }
   }
 
@@ -60,13 +60,13 @@ class SessionsValidate {
           req.mentorSession = mentorSession;
           next();
         } else {
-          return res.status(403).json({ status: 403, message: 'Unauthorized access. You can only view your sessions' });
+          return responseHelper.errorMessage(403, 'Unauthorized access. You can only view your sessions', res);
         }
       } else {
-        return res.status(404).json({ status: 404, message: 'You do not have a session with that ID' });
+        return responseHelper.errorMessage(404, 'You do not have a session with that ID', res);
       }
     } else {
-      return res.status(403).json({ status: 403, message: 'Unauthorized access.' });
+      return responseHelper.errorMessage(403, 'Unauthorized access', res);
     }
   }
 
@@ -78,19 +78,20 @@ class SessionsValidate {
           req.mentorSession = mentorSession;
           next();
         } else {
-          return res.status(403).json({ status: 403, message: 'Unauthorized access. You can only view your sessions' });
+          return responseHelper.errorMessage(403, 'Unauthorized access. You can only reject your sessions', res);
+
         }
       } else {
-        return res.status(404).json({ status: 404, message: 'You do not have a session with that ID' });
-      }
+        return responseHelper.errorMessage(404, 'You do not have a session with that ID', res);
+              }
     } else {
-      return res.status(403).json({ status: 403, message: 'Unauthorized access.' });
+      return responseHelper.errorMessage(403, 'Unauthorized access.', res);      
     }
   }
 
   static createSessionReview(req, res, next) {
     if (req.user.isMentor === true) {
-      return res.status(403).json({ status: 403, message: 'Unauthorized access. Only mentees can create reviews' });
+      return responseHelper.errorMessage(403, 'Unauthorized access. Only mentees can create reviews', res);
     }
     // check if the session exists
     const sessionToReview = sessions.find((oneSession) => oneSession.sessionId == req.params.sessionId);
@@ -105,13 +106,13 @@ class SessionsValidate {
           req.sessionToReview = sessionToReview;
           next();
         } else {
-          return res.status(403).json({ status: 403, message: 'Session has not been accepted yet' });
+          return responseHelper.errorMessage(403, 'Session has not been accepted yet', res);
         }
       } else {
-        return res.status(403).json({ status: 403, message: 'Unauthorized access. You can only review your sessions' });
+        return responseHelper.errorMessage(403, 'Unauthorized access. You can only review your sessions', res);
       }
     } else {
-      return res.status(403).json({ status: 403, message: 'No session with that ID' });
+      return responseHelper.errorMessage(403, 'No session with that ID', res);
     }
   }
 
@@ -123,10 +124,10 @@ class SessionsValidate {
         req.reviewToDelete = reviewToDelete;
         next();
       } else {
-        return res.status(404).json({ status: 404, message: 'Review with that ID not found' });
+        return responseHelper.errorMessage(404, 'Review with that ID not found', res);
       }
     } else {
-      return res.status(403).json({ status: 403, message: 'Unauthorized access. You are not an admin' });
+      return responseHelper.errorMessage(403, 'Unauthorized access. You are not an admin', res);
     }
   }
 }

@@ -1,14 +1,11 @@
-import users from '../models/usersModel';
-
+import users from '../data/usersModel';
+import responseHelper from '../helpers/responseHelper';
 
 class authController {
   // register new user
   static registerUser(req, res) {
     users.push(req.user);
-    res.status(201).json({
-      status: 201,
-      message: 'User created successfully',
-      data: {
+      const data =  {
         token: req.token,
         message: 'User created successfully',
         id: req.user.id,
@@ -22,20 +19,18 @@ class authController {
         expertise: req.user.expertise,
         isMentor: false,
         admin: false,
-      },
-    });
+      }
+    return responseHelper.successMessage(201, 'User created successfully', data, res)
   }
 
   // signin user
   static signinUser(req, res) {
-    res.status(200).json({
-      status: 200,
-      message: 'User is successfully logged in',
-      data: {
+    const data = {
         token: req.token,
         email: req.user.email,
-      },
-    });
+      }
+    return responseHelper.successMessage(200, 'User is successfully logged in', data, res);
+
   }
 }
 export default authController;
