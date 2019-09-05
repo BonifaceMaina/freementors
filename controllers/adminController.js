@@ -1,5 +1,5 @@
-const users = require('../models/usersModel');
-const mentors = require('../models/mentorsModel');
+import users from '../models/usersModel';
+import mentors from '../models/mentorsModel';
 
 
 class AdminController{
@@ -29,4 +29,4 @@ class AdminController{
 	}
 }
 
-module.exports = AdminController;
+export default AdminController;

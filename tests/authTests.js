@@ -1,10 +1,10 @@
-const chai = require('chai');
-const assert = require('assert');
-const chaiHttp = require('chai-http');
+import chai from 'chai';
+import assert from 'assert';
+import chaiHttp from 'chai-http';
+import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 const expect = chai.expect;
-const app = require('../index');
 
 describe('check auth routes', () => {
 

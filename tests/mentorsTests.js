@@ -1,7 +1,7 @@
-const chai = require('chai');
+import chai from 'chai';
 const expect = chai.expect;
-const assert = require('assert');
-const app = require('../index');
+import assert from 'assert';
+import app from '../index';
 
 describe('check mentor routes', function(){
 

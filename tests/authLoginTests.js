@@ -1,9 +1,9 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const assert = require('assert');
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import assert from 'assert';
+import app from '../index';
 chai.use(chaiHttp);
 const expect = chai.expect;
-const app = require('../index');
 
 describe('login tests', function(){
 

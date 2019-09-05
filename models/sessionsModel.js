@@ -33,4 +33,4 @@ const sessions = [
 	}
 ];
 
-module.exports = sessions;
+export default sessions;

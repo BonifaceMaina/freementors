@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 body, html{
-    background-image: url("images/home.jpg");
+    background-image: url("../images/bg.jpg");
     font-family: 'Motserrat', sans-serif;
     background-size: cover;
     /* background: white; */
@@ -17,16 +17,17 @@ body, html{
 }
 
 .registration{
-    position: absolute;
+    float: right;
+    /* position: absolute; */
     width: 50%;
     background: #00BCD4;
     opacity: 0.9;
     padding-top: 20px;
     color: black;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
+   margin: 30px auto;
+}
+ .loginReg{
+    margin: 100px auto;
 }
 .registration h3, h5{
     text-align: center;
@@ -40,7 +41,7 @@ body, html{
 
 .registration-form{
     padding: 0 10px 10px 10px;
-    margin: auto;
+    /* margin: auto; */
     background: #00BCD4;
 }
 
@@ -56,11 +57,6 @@ body, html{
     border-radius: 3px;
 }
 
-.registration .inline{
-    display: inline-block;
-    width: 50%;
-    margin: 0;
-}
 .registration .name{
     float: left;
 }
@@ -78,6 +74,56 @@ body, html{
 .registration input[type="submit"]:hover{
     background: #17c;
 }
+.landing{
+    height: 100vh;
+    /* background: white; */
+    width: 50%;
+    color: white;
+    float: left;
+    /* opacity: 0.1; */
+}
+
+.welcome{
+    margin: 150px auto 100px auto;
+    text-align: center;
+    padding: 20px;
+}
+.welcome h3{
+    font-size: 30px;
+    /* color: #2288dd; */
+    font-family: cursive;
+    font-style: italic;
+    
+}
+.welcome p{
+    font-size: 17px;
+}
+.landingItems{
+    padding-left: 80px;
+    align-items: center;
+}
+
+.landingBelow{
+    display: inline;
+    margin-right: 45px;
+    font-style: italic;
+    align-items: center;
+}
+
+footer{
+    min-height: 50px;
+    background: #00BCD4;
+    position: absolute;
+    width: 100%;
+    display: block;
+    bottom: 0;
+    text-align: center;
+    font-size: 18px;
+}
+footer p{
+    margin: 10px;
+}
+
 button{
     outline: none;
 }
@@ -317,7 +363,14 @@ textarea{
         width: 100%;
     }
     
-    .mentorship{
+    .landing{
+        max-height: 30vh;
+        width: 100%;
+    }
+    .welcome{
+        margin: 0;
+    }
+    footer{
         display: none;
     }
     .booked, .unbooked {

@@ -1,6 +1,6 @@
-const chai = require('chai');
+import chai from 'chai';
 const expect = chai.expect;
-const app = require('../index');
+import app from '../index';
 
 describe('check session routes', function(){
 

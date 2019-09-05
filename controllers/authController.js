@@ -1,20 +1,13 @@
-const config = require('config');
-const Joi = require('joi');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const users = require('../models/usersModel');
+import config from 'config';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import users from '../models/usersModel';
 
 
 class authController{
 	// register new user
 	static registerUser(req, res){
-		const { error } = validateRequest(req.body);
-		if(error){
-			res.status(400).send(error.details[0].message);
-			return;
-		}
 		const password = bcrypt.hashSync(req.body.password, 10);
-
 		const user = {
 			id: users.length + 1, 
 			firstName: req.body.firstName,
@@ -68,13 +61,6 @@ class authController{
 
 	// signin user
 	static signinUser(req,res){
-
-		const { error } = validateLogin(req.body);
-		if(error){
-			res.status(400).send(error.details[0].message);
-			return;
-		}
-		// check if user is in user database
 		const userExists = users.find(user => user.email === req.body.email);
 		if(userExists){
 			const comparePassword = bcrypt.compareSync(req.body.password, userExists.password);
@@ -110,29 +96,4 @@ class authController{
 
 	}
 }
-
-// validate registration request
-const validateRequest = (request) =>{
-	const schema ={
-		firstName: Joi.string().min(3).required().trim(),
-		lastName: Joi.string().min(3).required().trim(),
-		email: Joi.string().email().min(3).required().trim(),
-		password: Joi.string().regex(/^[a-zA-Z0-9]{3,300}$/),
-		address: Joi.string().min(3).required().trim(),
-		bio: Joi.string().min(3).required().trim(),
-		occupation: Joi.string().min(3).required().trim(),
-		expertise: Joi.string().min(3).required().trim()
-	};
-	return Joi.validate(request, schema);
-};
-
-// validate login request
-const validateLogin = (request) =>{
-	const schema ={
-		email: Joi.string().email().min(3).required().trim(),
-		password: Joi.string().required()
-	};
-	return Joi.validate(request, schema);
-};
-
-module.exports = authController;
+export default authController;
