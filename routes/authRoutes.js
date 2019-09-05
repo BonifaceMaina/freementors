@@ -2,11 +2,13 @@ import express from 'express';
 import authController from '../controllers/authController';
 import signupValidation from '../middleware/signupValidation';
 import signinValidation from '../middleware/signinValidation';
-const router = express.Router();
+import checkUser from '../middleware/checkUser';
+
+const authRoutes = express.Router();
 
 
-router.post('/signup',signupValidation, authController.registerUser);
+authRoutes.post('/signup', signupValidation, checkUser.userExistsReg, authController.registerUser);
 
-router.post('/signin', signinValidation, authController.signinUser);
+authRoutes.post('/signin', signinValidation, checkUser.userExistsLogin, authController.signinUser);
 
-export default router;
+export default authRoutes;

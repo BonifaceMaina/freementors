@@ -1,8 +1,10 @@
+import express from 'express';
 import adminController from '../controllers/adminController';
 import userAuth from '../middleware/userAuth';
-import express from 'express';
-const router = express.Router();
+import adminValidation from '../middleware/adminValidation';
 
-router.patch('/:userId', userAuth, adminController.upgradeUser);
+const adminRoute = express.Router();
 
-export default router;
+adminRoute.patch('/:userId', userAuth, adminValidation.checkUserToUpgrade, adminController.upgradeUser);
+
+export default adminRoute;
