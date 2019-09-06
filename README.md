@@ -1,7 +1,7 @@
 
 [![Build Status](https://travis-ci.org/BonifaceMaina/freementors.svg?branch=develop)](https://travis-ci.org/BonifaceMaina/freementors)
 [![Maintainability](https://api.codeclimate.com/v1/badges/79c528f6c6dd6e23b15b/maintainability)](https://codeclimate.com/github/BonifaceMaina/freementors/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/BonifaceMaina/freementors/badge.svg?branch=ft-api-signup-168022030)](https://coveralls.io/github/BonifaceMaina/freementors?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/BonifaceMaina/freementors/badge.svg?branch=develop)](https://coveralls.io/github/BonifaceMaina/freementors?branch=develop)
 
 # FreeMentors
 Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.
