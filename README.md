@@ -75,4 +75,3 @@ Created by Boniface Maina.
 
 ## Acknowledgements
 [Andela](https://andela.com/)
-
