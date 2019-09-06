@@ -1,9 +1,10 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
+
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 const expect = chai.expect;
-const app = require('../index');
 
 describe('admin functionalities', function(){
 

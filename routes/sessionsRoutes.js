@@ -1,19 +1,21 @@
-const usersController = require('../controllers/usersController');
-const userAuth = require('../middleware/userAuth');
-const express = require('express');
-let router = express.Router();
+import express from 'express';
+import usersController from '../controllers/usersController';
+import userAuth from '../middleware/userAuth';
+import sessionsValidate from '../middleware/sessionsValidate';
+
+const sessions = express.Router();
 
 
-router.post('/', userAuth, usersController.createSession);
+sessions.post('/', userAuth, sessionsValidate.createSession, usersController.createSession);
 
-router.get('/', userAuth, usersController.viewAllSessions);
+sessions.get('/', userAuth, sessionsValidate.viewAllSessions, usersController.viewAllSessions);
 
-router.patch('/:sessionId/accept', userAuth, usersController.acceptSession);
+sessions.patch('/:sessionId/accept', userAuth, sessionsValidate.acceptSession, usersController.acceptSession);
 
-router.patch('/:sessionId/reject', userAuth, usersController.rejectSession);
+sessions.patch('/:sessionId/reject', userAuth, sessionsValidate.rejectSession, usersController.rejectSession);
 
-router.post('/:sessionId/review', userAuth, usersController.createSessionReview);
+sessions.post('/:sessionId/review', userAuth, sessionsValidate.createSessionReview, usersController.createSessionReview);
 
-router.delete('/:sessionId/review', userAuth, usersController.adminDeleteReview);
+sessions.delete('/:sessionId/review', userAuth, sessionsValidate.adminDeleteReview, usersController.adminDeleteReview);
 
-module.exports = router;
+export default sessions;

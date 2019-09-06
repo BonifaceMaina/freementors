@@ -1,8 +1,10 @@
-const adminController = require('../controllers/adminController');
-const userAuth = require('../middleware/userAuth');
-const express = require('express');
-let router = express.Router();
+import express from 'express';
+import adminController from '../controllers/adminController';
+import userAuth from '../middleware/userAuth';
+import adminValidation from '../middleware/adminValidation';
 
-router.patch('/:userId', userAuth, adminController.upgradeUser);
+const adminRoute = express.Router();
 
-module.exports = router;
+adminRoute.patch('/:userId', userAuth, adminValidation.checkUserToUpgrade, adminController.upgradeUser);
+
+export default adminRoute;
