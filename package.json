@@ -6,8 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production nodemon index.js --exec babel-node --preset env",
     "test": "NODE_ENV=test nyc mocha tests/*.js --require @babel/register --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "build": "babel -d dist/server"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
     "node": "10.0.0",
